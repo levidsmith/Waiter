@@ -18,13 +18,14 @@ public class Player : MonoBehaviour {
     }
 
     void Update() {
-        handleInput();
-        CharacterController controller = GetComponent<CharacterController>();
-        controller.Move(vel * Time.deltaTime * fSpeed);
+
+        if (!gamemanager.isGameOver && !gamemanager.isLevelComplete) {
+            handleInput();
+            CharacterController controller = GetComponent<CharacterController>();
+            controller.Move(vel * Time.deltaTime * fSpeed);
+        }
         
 
-        //transform.rotation = Quaternion.AngleAxis(90f, Vector3.up);
-        //transform.eulerAngles = new Vector3(0f, 90f, 0f);
         
 
         

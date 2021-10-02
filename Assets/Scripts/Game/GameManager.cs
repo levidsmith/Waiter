@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -15,14 +16,28 @@ public class GameManager : MonoBehaviour {
 
     Player currentPlayer;
     //    List<Table> table;
-    bool isLevelComplete;
+    public bool isLevelComplete;
+    public int iLevel;
+
+    public const int MAX_LEVELS = 3;
+    public float fTimer;
+    public bool isGameOver;
+
     
     void Start() {
+        iLevel = 0;
         setupGame();
         
     }
 
     void Update() {
+
+        if (fTimer > 0f && !isLevelComplete && !isGameOver) {
+            fTimer -= Time.deltaTime;
+            if (fTimer <= 0f) {
+                timeExpired();
+            }
+        }
         
     }
 
@@ -33,8 +48,11 @@ public class GameManager : MonoBehaviour {
         currentPlayer.gamemanager = this;
         currentPlayer.transform.SetParent(room.transform);
 
+        int iTotalTables = 6 + (iLevel * 3);
+
+
         int i;
-        for (i = 0; i < 6; i++) {
+        for (i = 0; i < iTotalTables; i++) {
             Vector3 pos = new Vector3(-5f + ((i / 3) * 10f), 0f, -10f + (i % 3) * 10f);
             Table t = Instantiate(TablePrefab, pos, Quaternion.identity).GetComponent<Table>();
             t.transform.SetParent(room.transform);
@@ -44,6 +62,14 @@ public class GameManager : MonoBehaviour {
         PickupTable pickuptable = Instantiate(PickupTablePrefab, new Vector3(-12f, 0f, 0f), Quaternion.identity).GetComponent<PickupTable>();
         pickuptable.transform.SetParent(room.transform);
 
+        fTimer = 60f;
+        isGameOver = false;
+
+    }
+
+    private void timeExpired() {
+        isGameOver = true;
+        displaymanager.displayGameOver();
     }
 
     public void checkLevelComplete() {
@@ -58,12 +84,17 @@ public class GameManager : MonoBehaviour {
         isLevelComplete = allTablesComplete;
 
         if (isLevelComplete) {
-            displaymanager.displayLevelComplete();
+            if (iLevel + 1 >= MAX_LEVELS) {
+                displaymanager.displayWinner();
+            } else {
+                displaymanager.displayLevelComplete();
+            }
         }
 
     }
 
     public void doNextLevel() {
+        iLevel++;
         int i;
         for (i = room.transform.childCount - 1; i >= 0; i--) {
             DestroyImmediate(room.transform.GetChild(i).gameObject);
@@ -73,6 +104,10 @@ public class GameManager : MonoBehaviour {
 
 
         setupGame();
+    }
+
+    public void doReturnToTitle() {
+        SceneManager.LoadScene("title");
     }
 
 }

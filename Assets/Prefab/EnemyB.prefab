@@ -96,19 +96,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c5f9d312fdb0a944888e510660bbb05, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3c5f9d312fdb0a944888e510660bbb05, type: 3}
-      propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c5f9d312fdb0a944888e510660bbb05, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3c5f9d312fdb0a944888e510660bbb05, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c5f9d312fdb0a944888e510660bbb05, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c5f9d312fdb0a944888e510660bbb05, type: 3}
       propertyPath: m_RootOrder
@@ -120,7 +120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c5f9d312fdb0a944888e510660bbb05, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c5f9d312fdb0a944888e510660bbb05, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -130,6 +130,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1e30d0459c4ef40419456aeb220e58db, type: 2}
+    - target: {fileID: 341240851559510182, guid: 3c5f9d312fdb0a944888e510660bbb05, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: db3a4e133655aa845a61ded0ed1d6d6f, type: 2}
     - target: {fileID: 919132149155446097, guid: 3c5f9d312fdb0a944888e510660bbb05, type: 3}
       propertyPath: m_Name
       value: enemy

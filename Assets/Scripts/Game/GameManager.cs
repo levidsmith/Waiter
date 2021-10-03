@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour {
     public GameObject PlayerPrefab;
     public GameObject TablePrefab;
     public GameObject PickupTablePrefab;
+    public GameObject EnemyAPrefab;
+    public GameObject EnemyBPrefab;
+    public GameObject EnemyCPrefab;
 
     public GameObject room;
 
@@ -62,7 +65,86 @@ public class GameManager : MonoBehaviour {
         PickupTable pickuptable = Instantiate(PickupTablePrefab, new Vector3(-12f, 0f, 0f), Quaternion.identity).GetComponent<PickupTable>();
         pickuptable.transform.SetParent(room.transform);
 
-        fTimer = 60f;
+        Enemy enemy;
+        switch(iLevel) {
+            case 0:
+                //enemy = Instantiate(EnemyAPrefab, new Vector3(-5f, 0f, -5f + (Random.Range(0, 2) * 10f)), Quaternion.identity).GetComponent<Enemy>();
+                enemy = Instantiate(EnemyAPrefab, new Vector3(-5f, 0f, 5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+                //enemy = Instantiate(EnemyAPrefab, new Vector3(5f, 0f, -5f + (Random.Range(0, 2) * 10f)), Quaternion.identity).GetComponent<Enemy>();
+                enemy = Instantiate(EnemyAPrefab, new Vector3(5f, 0f, -5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+                break;
+            case 1:
+                enemy = Instantiate(EnemyAPrefab, new Vector3(-5f, 0f, -5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+                enemy = Instantiate(EnemyBPrefab, new Vector3(-5f, 0f, 5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+
+                enemy = Instantiate(EnemyAPrefab, new Vector3(5f, 0f, 5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+                enemy = Instantiate(EnemyBPrefab, new Vector3(5f, 0f, -5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+
+                enemy = Instantiate(EnemyAPrefab, new Vector3(15f, 0f, -5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+                enemy = Instantiate(EnemyBPrefab, new Vector3(15f, 0f, 5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+
+                break;
+            case 2:
+                enemy = Instantiate(EnemyAPrefab, new Vector3(-5f, 0f, 5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+                enemy = Instantiate(EnemyBPrefab, new Vector3(-5f, 0f, -5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+
+                enemy = Instantiate(EnemyCPrefab, new Vector3(5f, 0f, -5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+                enemy = Instantiate(EnemyBPrefab, new Vector3(5f, 0f, 5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+
+                enemy = Instantiate(EnemyAPrefab, new Vector3(15f, 0f, 5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+                enemy = Instantiate(EnemyCPrefab, new Vector3(15f, 0f, -5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+                enemy = Instantiate(EnemyCPrefab, new Vector3(25f, 0f, -5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+                enemy = Instantiate(EnemyBPrefab, new Vector3(25f, 0f, 5f), Quaternion.identity).GetComponent<Enemy>();
+                enemy.transform.SetParent(room.transform);
+
+
+                break;
+        }
+
+
+        switch(iLevel) {
+            case 0:
+                fTimer = 60f;
+                break;
+            case 1:
+                fTimer = 80f;
+                break;
+            case 2:
+                fTimer = 100f;
+                break;
+            default:
+                fTimer = 60f;
+                break;
+        }
         isGameOver = false;
 
     }

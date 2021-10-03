@@ -22,7 +22,13 @@ public class Player : MonoBehaviour {
         if (!gamemanager.isGameOver && !gamemanager.isLevelComplete) {
             handleInput();
             CharacterController controller = GetComponent<CharacterController>();
+
+
             controller.Move(vel * Time.deltaTime * fSpeed);
+
+            Vector3 vectFall = new Vector3(0f, -9.81f, 0f);
+            controller.Move(vectFall * Time.deltaTime);
+            
         }
         
 
@@ -51,9 +57,65 @@ public class Player : MonoBehaviour {
         i = 0;
         foreach (Glass glass in glasses) {
             float fGlassHeight = 0.3f;
-            glass.transform.localPosition = new Vector3(1f, 1f + (fGlassHeight * MAX_GLASSES) - (fGlassHeight * i), 0f);
+            float fGlassWidth = 0.2f;
+            //glass.transform.localPosition = new Vector3(1f, 1f + (fGlassHeight * MAX_GLASSES) - (fGlassHeight * i), 0f);
+            Vector3 pos;
+            switch (i) {
+                case 0:
+                    pos = new Vector3(3f * fGlassWidth, 3f * fGlassHeight, 0f);
+                    break;
+                case 1:
+                    pos = new Vector3(2f * fGlassWidth, 2f * fGlassHeight, 0f);
+                    break;
+                case 2:
+                    pos = new Vector3(4f * fGlassWidth, 2f * fGlassHeight, 0f);
+                    break;
+                case 3:
+                    pos = new Vector3(1f * fGlassWidth, 1f * fGlassHeight, 0f);
+                    break;
+                case 4:
+                    pos = new Vector3(3f * fGlassWidth, 1f * fGlassHeight, 0f);
+                    break;
+                case 5:
+                    pos = new Vector3(5f * fGlassWidth, 1f * fGlassHeight, 0f);
+                    break;
+                case 6:
+                    pos = new Vector3(0f * fGlassWidth, 0f * fGlassHeight, 0f);
+                    break;
+                case 7:
+                    pos = new Vector3(2f * fGlassWidth, 0f * fGlassHeight, 0f);
+                    break;
+                case 8:
+                    pos = new Vector3(4f * fGlassWidth, 0f * fGlassHeight, 0f);
+                    break;
+                case 9:
+                    pos = new Vector3(6f * fGlassWidth, 0f * fGlassHeight, 0f);
+                    break;
+
+                default:
+                    pos = Vector3.zero;
+                    break;
+            }
             i++;
+
+            glass.transform.localPosition = new Vector3(0.7f, 1f, 0f) + pos;
+
         }
+    }
+
+    public void dropGlasses() {
+        Debug.Log("dropping glasses");
+
+        Glass[] glasses = GetComponentsInChildren<Glass>();
+        GameObject gobjRoom = GameObject.Find("Room");
+
+        foreach (Glass glass in glasses) {
+            glass.transform.SetParent(gobjRoom.transform);
+            Rigidbody rigidbody = glass.GetComponent<Rigidbody>();
+            rigidbody.isKinematic = false;
+            rigidbody.AddForce(new Vector3(Random.Range(-5f, 5f), 20f, Random.Range(-5f, 5f)));
+        }
+
     }
 
 
@@ -92,6 +154,12 @@ public class Player : MonoBehaviour {
         if (hitPickupTable != null) {
             Debug.Log("hit pickup table");
             refillGlasses();
+        }
+
+        Enemy hitEnemy = hit.collider.GetComponent<Enemy>();
+        if (hitEnemy != null) {
+            Debug.Log("hit enemy");
+            dropGlasses();
         }
 
     }

@@ -56,13 +56,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game\PickupTable.cs" />
+    <Compile Include="Assets\Scripts\Title\TitleMenu.cs" />
     <Compile Include="Assets\Scripts\Game\Table.cs" />
     <Compile Include="Assets\Scripts\Game\DisplayManager.cs" />
     <Compile Include="Assets\Scripts\Game\Player.cs" />
     <Compile Include="Assets\Scripts\Game\GameManager.cs" />
     <Compile Include="Assets\Scripts\Game\Glass.cs" />
     <Compile Include="Assets\Scripts\Game\Customer.cs" />
-    <Compile Include="Assets\Scripts\Title\TitleMenu.cs" />
+    <Compile Include="Assets\Scripts\Game\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Game\EnemyA.cs" />
+    <Compile Include="Assets\Scripts\Game\EnemyB.cs" />
+    <Compile Include="Assets\Scripts\Game\EnemyC.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

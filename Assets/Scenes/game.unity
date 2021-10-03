@@ -1666,8 +1666,12 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 745475210181544674, guid: 5c46e1e2a3d5c4a4c8da933399520ed4, type: 3}
   TablePrefab: {fileID: 3154088833722091025, guid: 7a4bc8cc0f7b5474e8ae06be126a722b, type: 3}
   PickupTablePrefab: {fileID: 8448160199956909129, guid: 9ecd6112de783764894668a684c09f0a, type: 3}
+  EnemyAPrefab: {fileID: 5071808790692056414, guid: 7cbcd1de6690e374797b49fe0c239d3a, type: 3}
+  EnemyBPrefab: {fileID: 488424444655889067, guid: 11004003e677e0c4ab713191cca23468, type: 3}
+  EnemyCPrefab: {fileID: 5720137268988706971, guid: 9d5e20f6f778dc045b1df867dd4551c7, type: 3}
   room: {fileID: 634779937}
   displaymanager: {fileID: 1852709417}
+  isLevelComplete: 0
   iLevel: 0
   fTimer: 0
   isGameOver: 0

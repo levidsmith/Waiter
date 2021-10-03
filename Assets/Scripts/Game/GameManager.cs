@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour {
     public float fTimer;
     public bool isGameOver;
 
+    public Music music;
+    public SoundEffects soundeffects;
+
     
     void Start() {
         iLevel = 0;
@@ -147,6 +150,9 @@ public class GameManager : MonoBehaviour {
         }
         isGameOver = false;
 
+        music.stopAll();
+        music.musicGame.Play();
+
     }
 
     private void timeExpired() {
@@ -171,6 +177,9 @@ public class GameManager : MonoBehaviour {
             } else {
                 displaymanager.displayLevelComplete();
             }
+
+            music.stopAll();
+            music.musicVictory.Play();
         }
 
     }

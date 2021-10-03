@@ -51,6 +51,11 @@ public class Player : MonoBehaviour {
         Glass[] glasses = GetComponentsInChildren<Glass>();
 
 
+        if (glasses.Length < MAX_GLASSES) {
+            gamemanager.soundeffects.soundPickup.Play();
+
+        }
+
         int i;
         for (i = glasses.Length; i < MAX_GLASSES; i++) {
             Glass glass = Instantiate(GlassPrefab, Vector3.zero, Quaternion.identity).GetComponent<Glass>();
@@ -113,6 +118,10 @@ public class Player : MonoBehaviour {
         Glass[] glasses = GetComponentsInChildren<Glass>();
         GameObject gobjRoom = GameObject.Find("Room");
 
+        if (glasses.Length > 0) {
+            gamemanager.soundeffects.soundDrop.Play();
+        }
+
         foreach (Glass glass in glasses) {
             glass.transform.SetParent(gobjRoom.transform);
             Rigidbody rigidbody = glass.GetComponent<Rigidbody>();
@@ -120,6 +129,9 @@ public class Player : MonoBehaviour {
             rigidbody.AddForce(new Vector3(Random.Range(-5f, 5f), 20f, Random.Range(-5f, 5f)));
             rigidbody.AddTorque(new Vector3(Random.Range(-20f, 20f), 0f, Random.Range(-20f, 20f)));
         }
+
+
+        
 
     }
 
@@ -148,6 +160,7 @@ public class Player : MonoBehaviour {
                 if (hitTable.getGlassesRemainingCount() > 0) {
                     hitTable.serveGlass(glass);
                     gamemanager.checkLevelComplete();
+                    gamemanager.soundeffects.soundDeliver.Play();
                 }
             }
 

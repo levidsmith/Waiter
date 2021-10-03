@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
     public GameObject GlassPrefab;
 
     public GameManager gamemanager;
+    public Animator animator;
 
     void Start() {
         vel = new Vector3();
@@ -26,8 +27,11 @@ public class Player : MonoBehaviour {
 
             controller.Move(vel * Time.deltaTime * fSpeed);
 
+
             Vector3 vectFall = new Vector3(0f, -9.81f, 0f);
             controller.Move(vectFall * Time.deltaTime);
+
+            animator.SetFloat("velocity", vel.magnitude);
             
         }
         
@@ -98,7 +102,7 @@ public class Player : MonoBehaviour {
             }
             i++;
 
-            glass.transform.localPosition = new Vector3(0.7f, 1f, 0f) + pos;
+            glass.transform.localPosition = new Vector3(0.7f, 1.2f, 0f) + pos;
 
         }
     }
@@ -114,6 +118,7 @@ public class Player : MonoBehaviour {
             Rigidbody rigidbody = glass.GetComponent<Rigidbody>();
             rigidbody.isKinematic = false;
             rigidbody.AddForce(new Vector3(Random.Range(-5f, 5f), 20f, Random.Range(-5f, 5f)));
+            rigidbody.AddTorque(new Vector3(Random.Range(-20f, 20f), 0f, Random.Range(-20f, 20f)));
         }
 
     }
